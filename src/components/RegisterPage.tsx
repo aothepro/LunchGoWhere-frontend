@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setCookie } from "../utilities/cookies";
 import { JWT_COOKIE_NAME } from "../utilities/fetch";
 

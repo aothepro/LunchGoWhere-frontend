@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import { post } from "../utilities/fetch";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateSessionPage() {
+  const navigate = useNavigate();
+
   const nameRef = useRef<HTMLInputElement>(null);
   const lunchDateDateRef = useRef<HTMLInputElement>(null);
 
@@ -10,6 +13,7 @@ export default function CreateSessionPage() {
   const handleCreateSession = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    e.preventDefault();
     const name = nameRef.current?.value || "";
     const lunchDate = lunchDateDateRef.current?.value || "";
 
@@ -29,6 +33,11 @@ export default function CreateSessionPage() {
     post("/api/v1/session/create", {
       name,
       lunchDate: formattedDate.toISOString(),
+    }).then(async (res) => {
+      if (res.ok) {
+        const { id } = await res.json();
+        navigate("/sessions/" + id);
+      }
     });
   };
 

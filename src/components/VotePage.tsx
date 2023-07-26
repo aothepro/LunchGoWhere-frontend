@@ -68,8 +68,17 @@ export default function VotePage() {
     });
   };
 
+  const endSession = useCallback(() => {
+    setIsVotesLoading(true);
+    post("/api/v1/session/end", { sessionId }).then(async (res) => {
+      if (res.ok) {
+        navigate("/sessions");
+      }
+    });
+  }, [navigate, sessionId]);
+
   return (
-    <div className="flex justify-around bg-gray-50 dark:bg-gray-900">
+    <div className="flex justify-around bg-gray-50 dark:bg-gray-900 py-5">
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -158,6 +167,20 @@ export default function VotePage() {
                     </div>
                   </div>
                 </div>
+                {session?.creator && (
+                  <div>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        endSession();
+                      }}
+                      type="button"
+                      className="w-full text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-lg px-5 py-5 text-center mr-2 mb-2"
+                    >
+                      End Voting Session
+                    </button>
+                  </div>
+                )}
               </form>
             </div>
           </div>

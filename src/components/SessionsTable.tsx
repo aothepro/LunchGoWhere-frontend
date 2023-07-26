@@ -6,6 +6,7 @@ export type Session = {
   name: string;
   lunchDate: Date;
   creatorName: string;
+  creator: Boolean;
   active: Boolean;
   winningRestaurantName: string;
 };

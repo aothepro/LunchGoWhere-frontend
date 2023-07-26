@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { get, post } from "../utilities/fetch";
 import { Session } from "./SessionsTable";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,9 +17,23 @@ export default function VotePage() {
   const [restaurantName, setRestaurantName] = useState<string>("");
   const { sessionId = "" } = useParams();
   const navigate = useNavigate();
+
   if (!sessionId) {
     navigate("/sessions");
   }
+
+  const getVotes = useCallback(() => {
+    setIsVotesLoading(true);
+    get("/api/v1/vote/" + sessionId + "/all")
+      .then(async (res) => {
+        if (res.ok) {
+          const votes = await res.json().catch(() => []);
+          setVotes(votes);
+        }
+      })
+      .finally(() => setIsVotesLoading(false));
+  }, [sessionId]);
+
   useEffect(() => {
     get("/api/v1/session/" + sessionId).then(async (res) => {
       if (res.ok) {
@@ -34,19 +48,7 @@ export default function VotePage() {
       }
     });
     getVotes();
-  }, [sessionId]);
-
-  const getVotes = () => {
-    setIsVotesLoading(true);
-    get("/api/v1/vote/" + sessionId + "/all")
-      .then(async (res) => {
-        if (res.ok) {
-          const votes = await res.json().catch(() => []);
-          setVotes(votes);
-        }
-      })
-      .finally(() => setIsVotesLoading(false));
-  };
+  }, [getVotes, sessionId]);
 
   const getDateString = (lunchDate: Date | undefined) => {
     if (!lunchDate) return "";

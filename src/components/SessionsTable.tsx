@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { get } from "../utilities/fetch";
 
-type Session = {
+export type Session = {
   id: string;
   name: string;
   lunchDate: Date;

@@ -38,12 +38,31 @@ cd LunchGoWhere-backend
 yarn start
 ```
 
-path="/"
-path="/register"
-path="/login"
-path="/sessions/new"
-path="/sessions/:sessionId"
-path="/sessions"
+## All pages
+
+#### Home page
+
+[path="/"](localhost:3000/)
+
+#### Register
+
+[path="/register"](localhost:3000/)
+
+#### Login
+
+[path="/login"](localhost:3000/login)
+
+#### Create New Session
+
+[path="/sessions/new"](localhost:3000/sessions/new)
+
+#### View a particular session
+
+[path="/sessions/:sessionId"](localhost:3000/sessions/:sessionId)
+
+#### View all sessions
+
+[path="/sessions"](localhost:3000/sessions)
 
 ## Register an account
 

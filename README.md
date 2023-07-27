@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+# GeLunchGoWhere
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Introduction
 
-## Available Scripts
+There is frequently a need for teams to collectively decide on a location to head to for lunch. While each team member has an idea in mind, not everyone gets heard in the commotion and much time is spent to arrive at what may as well be a random choice.
 
-In the project directory, you can run:
+1. A user can initiate a session and invite others to join it.
+2. Other users who have joined the session may submit a restaurant of their choice.
+3. All users in the session are able to see restaurants that others have submitted.
+4. The user who initiated the session is able to end the session.
+   tech.gov.sg
 
-### `yarn start`
+- At the end of a session, a restaurant is randomly picked from all submitted restaurants. All users in the session are then able to see the picked restaurant.
+- A user should not be able to join a session that has already ended.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About the application
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This application comes to two parts, frontend and
+[backend](https://github.com/aothepro/LunchGoWhere-backend).
 
-### `yarn test`
+YOu will need to run both applications.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Features
 
-### `yarn build`
+- Login
+- Dark mode
+- Users can change votes as long as session is active
+- Lunch date field allows for users to know when lunch will happen
+- Lunch session after current date will not be accepting votes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running Frontend Application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Clone the application and start it by running the following command in terminal:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+git clone https://github.com/aothepro/LunchGoWhere-backend.git
+cd LunchGoWhere-backend
+yarn start
+```
 
-### `yarn eject`
+path="/"
+path="/register"
+path="/login"
+path="/sessions/new"
+path="/sessions/:sessionId"
+path="/sessions"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Register an account
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Go to the [register page](localhost:3000/register)
+- Fill up the form with a username and password
+- Click `Create Account`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Login with existing account
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Go to the [register page](localhost:3000/login)
+- Fill up the form with your username and password
+- Click `Login`
 
-## Learn More
+## Creating a session
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Go to the [create session page](localhost:3000/sessions/new)
+- Enter a name for the lunch session
+- Enter a date for when the lunch will happen
+- Click `Create Session`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Viewing all session
+
+- Go to [create session page](localhost:3000/sessions)
+- You will be able to see a table with all the session
+- If the session is open for voting, you can click the `Vote` button at the last column of the table to start voting for that session
+- Clicking vote will redirect you to view that particular session
+
+## Viewing a particular session and restaurant voting
+
+- If you completed creating a session, you will be directed to view the created session
+- Otherwise, go to localhost:3000/sessions/`{sessionId}`
+- Here you will be able to see the details of the session and vote for a restaurant
+- To vote for a restaurant, key in the name of the restaurant on the `Restaurant vote` field and click `Vote`
+- The table on the right will show existing votes of the session
+- If you are the creator of the session, you will be able to see the `End Voting Session` button that will end the session and select a restaurant from the votes.
+- The winning votes can also been see by all users in the [Viewing all session page](localhost:3000/sessions)
+
+## Connecting the frontend to the backend
+
+The application will start on port 3000 and proxies requests to 8080 where the backend. This is set via the `package.json` file in
+
+```
+{
+   ...
+   "proxy": "http://localhost:8080"
+   ...
+}
+```
+
+This is to overcome CORS issues when developing. Change the port if you are running the [backend](https://github.com/aothepro/LunchGoWhere-backend) on a non-default port.
+
+## Upcoming features/todos
+
+- Create Home page when users access ("/")
+- Pagination of sessions view
+- Auto end lunch session if past lunch time
+- Setting for anonymous voting
+- Google maps integration to select existing restaurant
+- Shortlist Sessions where user can only select from a shortlisted list of restaurants
+- Dockerize application
+- Add integration test via cypress
+- Add unit test via jest

@@ -18,7 +18,7 @@ There is frequently a need for teams to collectively decide on a location to hea
 This application comes to two parts, frontend and
 [backend](https://github.com/aothepro/LunchGoWhere-backend).
 
-YOu will need to run both applications.
+YOU WILL NEED TO RUN BOTH APPLICATIONS.
 
 # Features
 

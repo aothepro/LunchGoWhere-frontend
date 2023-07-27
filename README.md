@@ -42,50 +42,50 @@ yarn start
 
 #### Home page
 
-[path="/"](localhost:3000/)
+[path="/"](http://localhost:3000/)
 
 #### Register
 
-[path="/register"](localhost:3000/)
+[path="/register"](http://localhost:3000/)
 
 #### Login
 
-[path="/login"](localhost:3000/login)
+[path="/login"](http://localhost:3000/login)
 
 #### Create New Session
 
-[path="/sessions/new"](localhost:3000/sessions/new)
+[path="/sessions/new"](http://localhost:3000/sessions/new)
 
 #### View a particular session
 
-[path="/sessions/:sessionId"](localhost:3000/sessions/:sessionId)
+[path="/sessions/:sessionId"](http://localhost:3000/sessions/:sessionId)
 
 #### View all sessions
 
-[path="/sessions"](localhost:3000/sessions)
+[path="/sessions"](http://localhost:3000/sessions)
 
 ## Register an account
 
-- Go to the [register page](localhost:3000/register)
+- Go to the [register page](http://localhost:3000/register)
 - Fill up the form with a username and password
 - Click `Create Account`
 
 ## Login with existing account
 
-- Go to the [register page](localhost:3000/login)
+- Go to the [register page](http://localhost:3000/login)
 - Fill up the form with your username and password
 - Click `Login`
 
 ## Creating a session
 
-- Go to the [create session page](localhost:3000/sessions/new)
+- Go to the [create session page](http://localhost:3000/sessions/new)
 - Enter a name for the lunch session
 - Enter a date for when the lunch will happen
 - Click `Create Session`
 
 ## Viewing all session
 
-- Go to [create session page](localhost:3000/sessions)
+- Go to [create session page](http://localhost:3000/sessions)
 - You will be able to see a table with all the session
 - If the session is open for voting, you can click the `Vote` button at the last column of the table to start voting for that session
 - Clicking vote will redirect you to view that particular session
@@ -98,7 +98,7 @@ yarn start
 - To vote for a restaurant, key in the name of the restaurant on the `Restaurant vote` field and click `Vote`
 - The table on the right will show existing votes of the session
 - If you are the creator of the session, you will be able to see the `End Voting Session` button that will end the session and select a restaurant from the votes.
-- The winning votes can also been see by all users in the [Viewing all session page](localhost:3000/sessions)
+- The winning votes can also been see by all users in the [Viewing all session page](http://localhost:3000/sessions)
 
 ## Connecting the frontend to the backend
 
